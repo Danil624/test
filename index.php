@@ -31,7 +31,7 @@
                 </form>
             </div>
             <?php
-               get_all_records();
+               include "func.php";
             ?>
         </div>
     </div>

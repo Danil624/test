@@ -1,5 +1,6 @@
 <?php
- if(isset($_POST["Import"])){
+ if(isset($_POST["Import"]))
+ {
     
     $filename=$_FILES["file"]["tmp_name"];    
      if($_FILES["file"]["size"] > 0)
@@ -27,11 +28,11 @@
       
            fclose($file);  
      }
-  }  
+  }   
   function get_all_records(){
-    include("connect.php");
+    include "connect.php";
     $Sql = "SELECT * FROM employeeinfo";
-    $result = mysqli_query($con, $Sql);  
+    $result = mysqli_query($conn, $Sql);  
     if (mysqli_num_rows($result) > 0) {
      echo "<div class='table-responsive'><table id='myTable' class='table table-striped table-bordered'>
              <thead><tr><th>EMP ID</th>
@@ -53,15 +54,15 @@
 } else {
      echo "you have no records";
 }
-} 
-if(isset($_POST["Export"])){
+}
+  if(isset($_POST["Export"])){
      
     header('Content-Type: text/csv; charset=utf-8');  
     header('Content-Disposition: attachment; filename=data.csv');  
     $output = fopen("php://output", "w");  
     fputcsv($output, array('ID', 'First Name', 'Last Name', 'Email', 'Joining Date'));  
     $query = "SELECT * from employeeinfo ORDER BY emp_id DESC";  
-    $result = mysqli_query($con, $query);  
+    $result = mysqli_query($conn, $query);  
     while($row = mysqli_fetch_assoc($result))  
     {  
          fputcsv($output, $row);  
